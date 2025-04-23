@@ -1,1 +1,1 @@
-# photo-page1
+# photo-page
